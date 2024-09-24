@@ -127,16 +127,16 @@ let calculator = {
         this.sistem_de_operare = document.getElementById("sistem_de_operare").value
         this.memorie_ram.dimensiune_memram = document.getElementById("dimensiune_memram").value
         this.memorie_ram.pret_memram = Number(document.getElementById("pret_memram").value)
-        this.an_fabricatie_memram = Number.getElementById("an_fabricatie_memram").value
+        this.memorie_ram.an_fabricatie_memram = Number(document.getElementById("an_fabricatie_memram").value)
         this.display.rezolutie = document.getElementById("rezolutie").value
         this.display.pret_display = Number(document.getElementById("pret_display").value)
-        this.display.an_fabricatie_display = Number.getElementById("an_fabricatie_display").value
+        this.display.an_fabricatie_display = Number(document.getElementById("an_fabricatie_display").value)
         this.hdd.capacitate_hdd = document.getElementById("capacitate_hdd").value
         this.hdd.pret_hdd = Number(document.getElementById("pret_hdd").value)
-        this.hdd.an_fabricatie_hdd = Number.getElementById("an_fabricatie_hdd").value
+        this.hdd.an_fabricatie_hdd = Number(document.getElementById("an_fabricatie_hdd").value)
         this.procesor.capacitate_procesor = document.getElementById("capacitate_procesor").value
         this.procesor.pret_procesor = Number(document.getElementById("pret_procesor").value)
-        this.procesor.an_fabricatie_procesor = Number.getElementById("an_fabricatie_procesor").value
+        this.procesor.an_fabricatie_procesor = Number(document.getElementById("an_fabricatie_procesor").value)
          sum = this.memorie_ram.pret_memram + this.display.pret_display + this.hdd.pret_hdd + this.procesor.pret_procesor
         if(sum < 400){
             document.getElementById("test1").innerHTML = 'pretul este verde'
@@ -163,17 +163,21 @@ function afiseaza(){
         suma_total.style.color = 'red';
     }
 
+    let t1 = calculator.memorie_ram.an_fabricatie_memram;
+    let t2 = calculator.display.an_fabricatie_display;
+    let t3 = calculator.hdd.an_fabricatie_hdd;
+    let t4 = calculator.procesor.an_fabricatie_procesor;
+
+    let suma_an1 = t1 + t2 + t3;
+    let suma_an2 = t1 + t2 + t4;
+    let suma_an3 = t1 + t3 + t4;
+    let suma_an4 = t2 + t3 + t4;
     
-
-    let suma_an1 =0
-    let suma_an2 =0
-    let suma_an3 =0
-0
-    if(suma_an1 == 6072 || suma_an2 == 6072 || suma_an3 == 6072 ){
-
+    if(suma_an1 == 6072 || suma_an2 == 6072 || suma_an3 == 6072 || suma_an4 == 6072 ){
+        print.style.color = 'red';
     }
     else{
-        
+        print.style.color = 'blue';
     }
 
 
