@@ -1,0 +1,1 @@
+ <label for="numele_orasului">insert text</label>

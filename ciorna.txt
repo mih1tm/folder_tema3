@@ -1,0 +1,42 @@
+
+memorie ram
+    dimensiune_memram
+    pret
+    an fabricatie
+
+display
+    rezolutie display
+    pret
+    an fabricatie
+
+hdd
+    dimensiune_hdd
+    pret
+    an fabricatie
+
+model procesor
+    capacitate
+    pret
+    an fabriccatie
+
+producator
+os instalat
+
+
+buton "calculeaza pret"
+    
+    activare cand toate campurile pret > 0
+
+zona dedicate se afiseza configuratia
+
+if (pretul < 400 euro) 
+    pret = verde
+else 
+    pret = portocaliu
+
+if(majoritate ani > 2024)
+    text = rosu
+else 
+    text = albastru
+
+oninput=activare_buton()

@@ -10,16 +10,192 @@
     
 <h1>Calculator pret PC.</h1>
 
+<p>
+    <br>
+    <br>
+    <b style="font-size: 20px; " for="producator">Producator: </b>
+    <input type="text" id="producator" name="producator">
+    <br><br>
+    <b style="font-size: 20px; " for="sistem_de_operare">Sistem de operare: </b>
+    <input type="text" id="sistem_de_operare" name="sistem_de_operare">
+    <br><br>
+    <b style="font-size: 20px; ">Memoria RAM</b>
+    <br>
+    <label for="dimensiune_memram">Capacitatea memoriei RAM: </label>
+    <input type="number" id="dimensiune_memram" name="dimensiune_memram" >
+    <br>
+    <label for="an_fabricatie_memram">An fabricatie: </label>
+    <input type="number" id="an_fabricatie_memram" name="an_fabricatie_memram">
+    <br>
+    <label for="pret_memram">Pret: </label>
+    <input oninput=activare_buton() type="number" id="pret_memram" name="pret_memram">
+    <br><br>
+    <b style="font-size: 20px; ">Display</b>
+    <br>
+    <label for="rezolutie">Rezolutie display: </label>
+    <input type="number" id="rezolutie" name="rezolutie">
+    <br>
+    <label for="an_fabricatie_display">An fabricatie: </label>
+    <input type="number" id="an_fabricatie_display" name="an_fabricatie_display">
+    <br>
+    <label for="">Pret: </label>
+    <input oninput=activare_buton() type="number" id="pret_display" name="pret_display">
+    <br><br>
+    <b style="font-size: 20px; ">HardDisk</b>
+    <br>
+    <label for="capacitate_hdd">Capacitate hdd: </label>
+    <input type="number" id="capacitate_hdd" name="capacitate_hdd">
+    <br>
+    <label for="an_fabricatie_hdd">An fabricatie: </label>
+    <input type="number" id="an_fabricatie_hdd" name="an_fabricatie_hdd">
+    <br>
+    <label for="pret_hdd">Pret: </label>
+    <input oninput=activare_buton() type="number" id="pret_hdd" name="pret_hdd">
+    <br><br>
+    <b style="font-size: 20px; ">Procesor</b>
+    <br>
+    <label for="">Frecventa procesor: </label>
+    <input type="number" id="capacitate_procesor" name="capacitate_procesor">
+    <br>
+    <label for="">An fabricatie: </label>
+    <input type="number" id="an_fabricatie_procesor" name="an_fabricatie_procesor">
+    <br>
+    <label for="">Pret: </label>
+    <input oninput=activare_buton() type="number" id="pret_procesor" name="pret_procesor">
+    <br>
+    
 
+</p>
+<p>
+    <button disabled style="font-size: 40px;" id="buton_calculeaza_pret"  onclick="calculator.proceseaza() ; afiseaza() " >Calculeaza Pret!</button>
+</p>
 
+<br><br><br><br><br><br><br>
+<p id="suma_total"></p>
+<p id="test1"></p>
 </body>
 
 
 
 <script>
 
+function activare_buton(){
+    let lungime_input1 = document.getElementById("pret_memram").value.length
+    let lungime_input2 = document.getElementById("pret_display").value.length
+    let lungime_input3 = document.getElementById("pret_hdd").value.length
+    let lungime_input4 = document.getElementById("pret_procesor").value.length
+    if(lungime_input1 > 0 && lungime_input2 > 0 && lungime_input3 > 0 && lungime_input4 > 0 ){
+        document.getElementById("buton_calculeaza_pret").disabled = false
+    }
+    else{
+        document.getElementById("buton_calculeaza_pret".disabled= true)
+    }
+}
+
+let calculator = {
+
+    producator: "",
+    sistem_de_operare: "",
+    
+    memorie_ram: {
+        dimensiune_memram: "",
+        pret_memram: "",
+        an_fabricatie_memram: "",
+    },
+    
+    display: {
+        rezolutie: "",
+        pret_display: "",
+        an_fabricatie_display: "",
+    },
+
+    hdd:{
+        capacitate_hdd: "",
+        pret_hdd: "",
+        an_fabricatie_hdd:"",
+    },
+    
+    procesor:{
+        capacitate_procesor: "",
+        pret_procesor: "",
+        an_fabricatie_procesor: "",
+    },
+
+    
+    proceseaza: function(){
+        this.producator = document.getElementById("producator").value
+        this.sistem_de_operare = document.getElementById("sistem_de_operare").value
+        this.memorie_ram.dimensiune_memram = document.getElementById("dimensiune_memram").value
+        this.memorie_ram.pret_memram = Number(document.getElementById("pret_memram").value)
+        this.an_fabricatie_memram = Number.getElementById("an_fabricatie_memram").value
+        this.display.rezolutie = document.getElementById("rezolutie").value
+        this.display.pret_display = Number(document.getElementById("pret_display").value)
+        this.display.an_fabricatie_display = Number.getElementById("an_fabricatie_display").value
+        this.hdd.capacitate_hdd = document.getElementById("capacitate_hdd").value
+        this.hdd.pret_hdd = Number(document.getElementById("pret_hdd").value)
+        this.hdd.an_fabricatie_hdd = Number.getElementById("an_fabricatie_hdd").value
+        this.procesor.capacitate_procesor = document.getElementById("capacitate_procesor").value
+        this.procesor.pret_procesor = Number(document.getElementById("pret_procesor").value)
+        this.procesor.an_fabricatie_procesor = Number.getElementById("an_fabricatie_procesor").value
+         sum = this.memorie_ram.pret_memram + this.display.pret_display + this.hdd.pret_hdd + this.procesor.pret_procesor
+        if(sum < 400){
+            document.getElementById("test1").innerHTML = 'pretul este verde'
+        }
+        else{
+            document.getElementById("test1").innerHTML = 'pretul este rosu'
+        }
+        console.log(sum)
+    }
+
+}
 
 
 
+function afiseaza(){
+    let print = document.getElementById("test1");
+    let suma_total = document.getElementById("suma_total")
+    suma_total.innerHTML ='Pret TOTAL: ' + sum
+    
+    if(sum < 400){
+        suma_total.style.color = 'green';
+    } 
+    else {
+        suma_total.style.color = 'red';
+    }
+
+    
+
+    let suma_an1 =0
+    let suma_an2 =0
+    let suma_an3 =0
+0
+    if(suma_an1 == 6072 || suma_an2 == 6072 || suma_an3 == 6072 ){
+
+    }
+    else{
+        
+    }
+
+
+    print.innerHTML =
+    'Producator: ' + calculator.producator + '<br><br>' 
+    + 'Sistem de operare: ' + calculator.sistem_de_operare + '<br><br>'
+    + 'Memorie RAM' + '<br><br>' 
+        + 'Capacitate memorie RAM: ' + calculator.memorie_ram.dimensiune_memram + '<br>' 
+        + 'Pret: ' + calculator.memorie_ram.pret_memram + '<br>' 
+        + 'An fabricatie: ' + calculator.memorie_ram.an_fabricatie_memram + '<br><br><br>' 
+    + 'Display: ' + '<br><br>'
+        + 'Rezolutie: ' + calculator.display.rezolutie + '<br>' 
+        + 'An fabricatie: ' + calculator.display.an_fabricatie_display + '<br>' 
+        + 'Pret: ' + calculator.display.pret_display +'<br><br><br>'
+    + 'HardDisk: ' + '<br><br>' 
+        + 'Capacitate HDD: ' + calculator.hdd.capacitate_hdd + '<br>' 
+        + 'An fabricatie: ' + calculator.display.an_fabricatie_display + '<br>' 
+        + 'Pret: ' + calculator.hdd.pret_hdd + '<br><br><br>' 
+    + 'Procesor: ' + '<br><br>' 
+        + 'Frecventa: ' + calculator.procesor.capacitate_procesor + '<br>' 
+        + 'An Fabricatie: ' + calculator.procesor.an_fabricatie_procesor + '<br>' 
+        + 'Pret: ' + calculator.procesor.pret_procesor + '<br><br><br>'
+}
 </script>
 </html>
